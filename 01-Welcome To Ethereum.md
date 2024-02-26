@@ -9,3 +9,21 @@ Pneumonic phrase gives access to all the accounts created. Private key gives acc
 In the top left we can see different networks. However, when we buy Ethereum or work with Ethereum we are working with Ethereum Mainnet or whether we work with defi, web3, smartcontract we are working on Ethereum Mainnet. However, since we are Engineers and oftentimes we are going to want to test our applications or do some type of integration tests or just make sure our code actually work, so there is also called TestNets.
 
 These are networks that resemble Ethereum and work exactly the same way as Ethereum, however they are not with real money and it's just for testing your application.
+
+# Making our first transaction on SepoliaETH Testnet
+Go to https://www.alchemy.com/faucets/ethereum-sepolia
+Faucet is a testnet application that gives us free test tokens.
+
+Now go to https://sepolia.etherscan.io and add our test account wallet address and we can see the transaction.
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/d36bf2de-4e42-4c78-a974-d3caa17b22dd)
+
+We can even look at this transaction detail:
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/aaf29517-061a-4382-9275-1d754c7f5688)
+
+Etherscan is known as Block Explorer. It allows us to view the transactions that happen on the Blockchain.
+
+The Transaction Hash is the unique identifier that identifies this transaction.
+
+**GAS** refer to a fees paid to Node Operators. It's a unit of Computational Measure. The more computation a transaction uses, the more "gas" you have to pay for. 
+Every transaction that happens on-chain pays a "gas fee" to Node Operators.
