@@ -27,3 +27,15 @@ The Transaction Hash is the unique identifier that identifies this transaction.
 
 **GAS** refer to a fees paid to Node Operators. It's a unit of Computational Measure. The more computation a transaction uses, the more "gas" you have to pay for. 
 Every transaction that happens on-chain pays a "gas fee" to Node Operators.
+
+The amount of GAS used and and how much you pay depends on how "computationally expensive" your transaction is.
+Sending ETH to one address would be cheaper than sending ETH to 1000 adresses. We can choose how much fee we want to send to these miners.
+
+We can use https://www.alchemy.com/gwei-calculator to convert GWEI to ETHER. So in summary:
+- GAS: Measure of computation use
+- GAS Price: How much it costs per unit of GAS.
+- GAS Limit: Max amount of GAS  in a transaction.
+- Transaction Fee: Gas Used x Gas Price i.e. 20,000 gas @1 GWEI per gas = 21,000 GWEI
+
+### Why do we ever want to increase per unit GAS price?
+https://ethgasstation.info
