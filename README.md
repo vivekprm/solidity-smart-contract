@@ -62,7 +62,12 @@ Uniswap is decentralized exchange.
 
 All these pieces allow us to live in a world that is more accountable, more trusting, more friendly and overall better world. 
 
-This brings out new world of economic opportunity as well and as our lives become more and more digital, we're constantly being bombarded with centralized services that want us to use their interface so they can profit on how we interact and force us or push us to making the decisions that they're motivated for us to make. Smart contracts, decentralized applications and blockchain allows us to be free of these repressors and live in an environment that's truly free and trustless. 
+This brings out new world of economic opportunity as well and as our lives become more and more digital, we're constantly being bombarded with centralized services that want us to use their interface so they can profit on how we interact and force us or push us to making the decisions that they're motivated for us to make. Smart contracts, decentralized applications and blockchain allows us to be free of these repressors and live in an environment that's truly free and trustless.
+
+What industries have come around due to these smart contracts?
+**DeFi**: Decentralized Finanace, gives user ability to engage with finance and markets without having to go through a centralized intermeidary.
+**DAOs**: Decentralized Autonomous Organisations, are groups that are governed completely decentralized by a set of instructions or smart contracts on chain.
+**NFTs**: Non Fungible Tokens, can be dscribed as digital art or unique asset. They can do so much more but we keep it high level for now.
 
 # Summary
 - Blockchains are decentralized: Meaning that they are not controlled by a single centralized entity. It is run by a network of independent users.
