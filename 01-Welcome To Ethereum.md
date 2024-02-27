@@ -11,6 +11,8 @@ In the top left we can see different networks. However, when we buy Ethereum or 
 These are networks that resemble Ethereum and work exactly the same way as Ethereum, however they are not with real money and it's just for testing your application.
 
 # Making our first transaction on SepoliaETH Testnet
+https://github.com/Cyfrin/foundry-full-course-f23?tab=readme-ov-file#testnet-faucets
+
 Go to https://www.alchemy.com/faucets/ethereum-sepolia
 Faucet is a testnet application that gives us free test tokens.
 
