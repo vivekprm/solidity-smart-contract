@@ -41,6 +41,12 @@ Over the year new term has come to life called L2 or Layer 2, this solves the is
 
 Web3 is the idea that Blockchains and samrt contracts are the next iteration of the Web. Inc ontrast to web2 where centralized servers run the logic, in web3 decentralized servers run the logic.
 
+Smart Contract is an agreement, contract or a set of instructions that is deployed on a decentralized blockchain. Once the contract is deployed, it can't be altered, it automatically executes and everyone can see the terms of the agreement. Code is executed by decentralized collective i.e. group of people running certain software. That means no one person entity can alter any of these agreements or change the terms of the arrangement.
+
+In traditional contracts whoever owns the contract can anytime flip the switch and say that we are not going to do that anymore. In blockchain you can't do that.
+
+Uniswap is decentralized exchange.
+
 # Advantages of Blockchain & Smart Contracts Over Traditional Environments
 - **Decentralized**: There is no centralized source that controls the Blockchain. Individuals that makeup blockchain are known as Node Operators and they are the independent individuals running the Software that connects the whole Blockchain together. It's all these different independent individuals that make a Blockchain, a Blockchain like networks decentralized. Great example of why this is so fundamentally ground breaking is if we go back to what happened recently with Robinhhod & Gamestop. Gamestop shared were no longer allowed to be bought because a centralized entity didn't want them to be bought.
 - **Transparency & Flexibility**: Everything that is done on a blockchain and all the rules that are made can be seen by everyone. There is no backdoor deals, there is no shady happenings. Everything that happens on chain you can see. This means that there's no special information that you have. Everyone has to play by the same rules. and everyone can see exactly what those rules are. Now that doesn't mean that everything that you do is tracked. Blockchain is pseudo-anonymous, so you can create different accounts and you can interact with it in many different ways.
