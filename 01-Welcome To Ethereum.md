@@ -41,3 +41,9 @@ We can use https://www.alchemy.com/gwei-calculator to convert GWEI to ETHER. So 
 
 ### Why do we ever want to increase per unit GAS price?
 https://ethgasstation.info
+
+EVM Opcodes: Each transaction is broken down into many many small instructions. Each instruction is madeup of these EVM opcodes. Each Etherum Virtual machine opcdoes, you can see how much gas it costs.
+https://www.evm.codes/?fork=shanghai
+
+If we multiple gas used with gas fees, we will get the total transaction fees.
+
