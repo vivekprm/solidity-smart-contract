@@ -31,7 +31,15 @@ Combining these on-chain logic settlement layers and these off-chain data and ex
 
 **Decentralized application** is usually a combination of several smart contracts. Since it's inception the Ethereum protocol has given rise to many new paradigms and industries, including DeFi, NFTs, DOWs or Decentralized Autonomous Organizations, layer twos and so much more and a couple of other protocols have taken this Ethereum Vision and gone in a different direction with it. Like Polygon, PolkaDot or Avalanche.
 
+There are couple of smart contract platforms that don't use solidity but fundamentals are almost the same. Ethereum is the most valued smart contract platform out there.
+
 Chainlink is the most popular and powerful Oracle Network and it's Blockchain and Smart Contract agnostic meaning it will work on Ethereum, Avalanche, Polygon, Polkadot or really any blockchain or smart contract platform.
+
+Over the year new term has come to life called L2 or Layer 2, this solves the issue that most blockchains see where they don't scale very well. Basic concept is that blockchain can really only get so big. If it's Ethereum, you can get blockchains hook into them to essentially make them bigger. At the moment there are two types of L2:
+- Optimistic Rollups: For example [Arbitrum](https://arbitrum.io/?ref=blog.thirdweb.com), [Optimism](https://www.optimism.io/?ref=blog.thirdweb.com)
+- Zero Knowledge Rollups: For example [Zksync](https://docs.zksync.io/zkevm/), [Polygon](https://polygon.technology/solutions/polygon-zkevm)
+
+Web3 is the idea that Blockchains and samrt contracts are the next iteration of the Web. Inc ontrast to web2 where centralized servers run the logic, in web3 decentralized servers run the logic.
 
 # Advantages of Blockchain & Smart Contracts Over Traditional Environments
 - **Decentralized**: There is no centralized source that controls the Blockchain. Individuals that makeup blockchain are known as Node Operators and they are the independent individuals running the Software that connects the whole Blockchain together. It's all these different independent individuals that make a Blockchain, a Blockchain like networks decentralized. Great example of why this is so fundamentally ground breaking is if we go back to what happened recently with Robinhhod & Gamestop. Gamestop shared were no longer allowed to be bought because a centralized entity didn't want them to be bought.
