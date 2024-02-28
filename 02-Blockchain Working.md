@@ -51,3 +51,8 @@ Now let's verify this signed data using this public key.
 ![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/aafaa9a3-028c-40e0-9cec-b91d49131157)
 
 Same thing can be done with transaction [here](https://andersbrownworth.com/blockchain/public-private-keys/transaction).
+
+How our Metamask address is derived?
+If we go do our Metamask account and look at secret phrase (mnemonic) it allows us to created different private keys. So mnemonic phrase combined with account number gives us private key for that account. Which we can see in account details in Metamask. We use this private key to sign the transactions.
+Our Ethereum Address is actually a piece of public key. Now to get our address in Ethereum all we have to do is take the public key that we created with our private key, hash it using the same Ethereum hasing algorithm and then take the last 20 bytes and that's how we derive our address. 
+Knowing exact methodolgy behind the address doesn't really matter as it varies blockchain to blockchain but concept is almost similar.
