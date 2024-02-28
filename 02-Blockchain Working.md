@@ -72,4 +72,17 @@ Transaction Fee is the cost assiciated with running that transaction. Gas limit 
 
 If we set Gas fee less than base fee then our transaction never going to be validated.
 
-Our base Gas fee is 65.362942411 Gwei. Currently, in Ethereum our base fee endup getting burnt. So if we multiple our base Gas fee with Gas price = 
+Our base Gas fee is 65.362942411 Gwei. Currently, in Ethereum our base fee endup getting burnt. So if we multiply our base Gas fee with Gas Used = 65.362942411 x 21000 = 0.001372621790631 ETH
+This means whenever we send a transaction a little bit of Ethereum is removed from circulation forever. So currently in Ethereum, part of your Ethereum transaction fee is actually gets burnt and rest of the part goes to miners.
+
+So the amount that went to mines is = Transaction Fee - Burnt Fees = 0.006082358723196 - 0.001372621790631 = 0.004709736932565 ETH
+
+Blockchains have limited block space for transactions, the gas prices that costs for your transaction to be included in one of these blocks changes based of how much demand there is. Base gas fees for Ethereum will go up and down depending upon how many people are sending transactions and how many people want to be included in the block.
+
+Checkout this video for more details: https://www.youtube.com/watch?v=MGemhK9t44Q go to 4:31mins
+
+Base Fees get programatically algorithmically adjusted to try to target for all the blocks to be 50% full. If they are more than 50% full this base fees automatically goes up. If they are less than 50% full, this base fees goes down.
+
+
+
+
