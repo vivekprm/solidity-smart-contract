@@ -17,3 +17,37 @@ If we change any intermediate block in the chain it invalidates all the blocks a
 Now let's look at the same problem in case of distributed blockchain [here](https://andersbrownworth.com/blockchain/distributed). Now we have multiple peers with same copy of blockchain data. Now let's say PeerA decides that a Block doesn't have valida data and changes it, so all the block after that become invalid so peer A remines it and fixes it. But now hash value of blocks in peer A's block chain are different. Here distributed nature comes into play. Since data in peerA chain doesn't match with other peers, other peers decide that PeerA doesn't have valid data and it can't take part in mining anymore.
 
 Instead of string data if we want to understand blockchain with some real transaction data refer [this link](https://andersbrownworth.com/blockchain/tokens).
+
+# Mining
+The process of finding the **solution** to the **blockchain problem**. In our example, problem was to find a hash that starts with four zeros. Nodes get paid for mining blocks.
+
+# Block
+A list of transactions mined together.
+
+# Nounce
+A **number used once** to find the solution to the **blockchain problem**.
+It's also used to define the transaction number for an account/address.
+
+# Signing Transactions
+In each of the transactions in the block, how do we know the transaction was done by that user?
+[Here](https://andersbrownworth.com/blockchain/public-private-keys/keys) we have example fo public private keys.
+
+## Private Key
+Only known to the key holder, it's used to "sign" transactions. Ethereum uses [Elliptic Curve Digital Signature ALgorithm](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) and create public key using the private key that we passed. Now we want everybody to have access to this public key. We can sign the transaction using the Private Key and then others can verify using this public key.
+
+E.g. Let's pick a random key: 62136415887603193604652230570448986910612604399908441544998473008845507575009
+public key: 0456a20f86ecdf634012ad26f744e7f1a4e4dff7d8db510259411a785d13d478822625bf5b5423f28fbbdced5f455d3053a79106738f353db4ec2112bee6d911bd
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/2f116c61-7874-4a0c-a6de-eb2424075227)
+
+So for example we signed our data "Hello world" with this private key [here](https://andersbrownworth.com/blockchain/public-private-keys/signatures) shown below:
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/65a5c7fe-6f46-4852-81a8-051261bc576b)
+
+No body can derive private key using this signed data.
+
+Now let's verify this signed data using this public key.
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/aafaa9a3-028c-40e0-9cec-b91d49131157)
+
+Same thing can be done with transaction [here](https://andersbrownworth.com/blockchain/public-private-keys/transaction).
