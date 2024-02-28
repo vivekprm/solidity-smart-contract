@@ -83,6 +83,8 @@ Checkout this video for more details: https://www.youtube.com/watch?v=MGemhK9t44
 
 Base Fees get programatically algorithmically adjusted to try to target for all the blocks to be 50% full. If they are more than 50% full this base fees automatically goes up. If they are less than 50% full, this base fees goes down.
 
+Tax savings is Transaction Fees if we would have used Max Gas Price minus transaction fees with the actual gas prices. 
 
+In case of sending Ethereum input data is blank but with smart contract it's not going to be blank.
 
 
