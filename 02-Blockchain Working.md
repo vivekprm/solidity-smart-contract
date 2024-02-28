@@ -56,3 +56,20 @@ How our Metamask address is derived?
 If we go do our Metamask account and look at secret phrase (mnemonic) it allows us to created different private keys. So mnemonic phrase combined with account number gives us private key for that account. Which we can see in account details in Metamask. We use this private key to sign the transactions.
 Our Ethereum Address is actually a piece of public key. Now to get our address in Ethereum all we have to do is take the public key that we created with our private key, hash it using the same Ethereum hasing algorithm and then take the last 20 bytes and that's how we derive our address. 
 Knowing exact methodolgy behind the address doesn't really matter as it varies blockchain to blockchain but concept is almost similar.
+
+How Metamask is creating Private Key for Different Account?
+If we go to our blockchaind demo [hash section](https://andersbrownworth.com/blockchain/hash). What Metamask essentially doing is, it's taking the mnemonic and then hashing it with some number.
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/9719ff07-f6b2-40e8-8e65-cc4c015b2fef)
+
+For other account it uses differnt number and same mnemonic and creates another PrivateKey using new hash. That's why it's essential to secure the mnemonic.
+
+Let's look at our metamask transaction that we did earlier and have closer look on GAS.
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/4eafc57a-916a-4f3d-8b59-60b7a88ee1de)
+
+Transaction Fee is the cost assiciated with running that transaction. Gas limit in this case is 84000 and the Gas used for this transaction is 21000 and Gas price is 0.000000289636129676 ETH. So transaction fees is 21000 x 0.000000289636129676 ETH = 0.006082358723196 ETH
+
+If we set Gas fee less than base fee then our transaction never going to be validated.
+
+Our base Gas fee is 65.362942411 Gwei. Currently, in Ethereum our base fee endup getting burnt. So if we multiple our base Gas fee with Gas price = 
