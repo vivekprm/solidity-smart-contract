@@ -104,13 +104,71 @@ contract SimpleStorage {
 # Memory, Storage & Call data Intro
 We didn't talk about **memory** keyword above. There are 6 places you can store data in solidity.
 - Stack
-- Memory: Variable only going to exist temporarily. It's only going to exist for the duration of function call.
-- Storage
-- Calldata
+- Memory: Variable only going to exist temporarily. It's only going to exist for the duration of function call. Most variables automatically default to "memory". strings are special type in solidity, so we have to explicitly set it to memory or calldata.
+- Storage: Permanent variable and can be modified.
+- Calldata: Variable only going to exist temporarily line memory. Difference is with calldata variable can't be modified.
 - Code
 - Logs
 
+If we give memory keyword to uint256, we get compile error. As this keyword can only be used with string, array, mappings and struct types. We can't even give it "storage" keyword either because solidity knows it's local varaible and going to short live, it doesn't allow that.
 
+# Basic Solidity Mappings
+What if we wanted to get favorite number of a specific person. We have to iterate over the loop and find the data. We could use better datastructure for search called mapping in this case.
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18; // Works with solidity version >= 0.8.18, we can also specify range of versions.
+
+contract SimpleStorage {
+    // Basic types: boolean, uint, int, address, bytes
+    // favoriteNumber initializes to 0 if no value specified.
+    uint256 public myFavoriteNumber; //0
+
+    struct Person {
+        uint256 favoriteNumber;
+        string name;
+    }
+
+    // Dynamic array
+    Person[] public listOfPeople;
+
+    mapping(string => uint256) public nameToFavoriteNumber;
+
+    function store(uint256 _favoriteNumber) public {
+        myFavoriteNumber = _favoriteNumber;
+    }
+
+    // view, pure
+    function retrieve() public view returns (uint256) {
+        return myFavoriteNumber;
+    }
+
+    function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        listOfPeople.push(Person(_favoriteNumber, _name));
+        nameToFavoriteNumber[_name] = _favoriteNumber;
+    }
+}
+```
+
+# Deploying Your First Smart Contract
+Lets deploy it to real testnet. Change environment to "Injected Provider - MetaMask" as below:
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/aec43824-0685-42e9-9cec-bb3a1a3495b7)
+
+With this we inject our metamask into Remix. Click view on etherscan in Remix terminal to see details of the transaction. We can copy the transaction and search on etherscan. It shows that it was contract creation.
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/3969fff8-7a68-4dc0-b81e-bf9c3bd49216)
+
+Now if we store a favorite number, we again get MataMask confirmation block as we are changing the blockchain. We can copy the transaction hash and check etherscan again:
+
+![image](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/dffb5927-e4ec-4d21-9d27-95416975f8b0)
+
+# EVM
+When we compile the solidity code, it compiles it down to something called the EVM or Ethereum Virtual Machine. EVM is the standard for how to compile and how to deploy smart contracts to Blockchain. Any Blockchain that is EVM compatible, we should be able to deploy Solidity code to. Some examples of EVM compatible Blockchains and layer 2s are Ethereum, Polygon, Arbitrum, Optimism, Zksync etc.
+
+However before deploying check the datails of Blockchain. E.g. Zksync is EVM compatible but couple of keywords don't work on Zksync.
+
+# Remix Storage Factory
 
 To search about information or errors use below resources.
 # Resources For This Course
