@@ -60,4 +60,59 @@ Now if we deploy again we see new blue button called retrieve. The colour is blu
 A function marked view means, we are just going to read state from the blockchain e.g. in case of retrieve we are just going to read what favoriteNumber variable is.
 Pure disallows even reading from store or storage. favoriteNumber here is know as storage variable because it's stored in a place called storage. 
 
-2:48
+```sol
+function retrieve() public pure returns (uint256) {
+        return 7;
+    }
+```
+Calling a view or pure function doesn't cost gas if we call by clicking the button. But if store function calls this pure or view function, we do need to pay the gas.
+
+Now we can change our contract and allow adding favoriteNumber for others as well
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18; // Works with solidity version >= 0.8.18, we can also specify range of versions.
+
+contract SimpleStorage {
+    // Basic types: boolean, uint, int, address, bytes
+    // favoriteNumber initializes to 0 if no value specified.
+    uint256 public myFavoriteNumber; //0
+
+    struct Person {
+        uint256 favoriteNumber;
+        string name;
+    }
+
+    // Dynamic array
+    Person[] public listOfPeople;
+
+    function store(uint256 _favoriteNumber) public {
+        myFavoriteNumber = _favoriteNumber;
+    }
+
+    // view, pure
+    function retrieve() public view returns (uint256) {
+        return myFavoriteNumber;
+    }
+
+    function addPerson(string memory _name, uint256 _favoriteNumber) public {
+        listOfPeople.push(Person(_favoriteNumber, _name));
+    }
+}
+```
+
+To search about information or errors use below resources.
+# Resources For This Course
+- AI Frens
+    - [ChatGPT](https://chat.openai.com/)
+        - Just know that it will often get things wrong, but it's very fast!
+    - [Phind](https://www.phind.com/)
+        - Like ChatGPT, but it searches the web
+    - [Bard](https://bard.google.com/)
+    - [Other AI extensions](https://twitter.com/aisolopreneur/status/1654823630155464704?s=42&t=-pu_sCYtfrfPJU7OXfifrQ)
+- Github Discussions
+    - Ask questions and chat about the course here!
+- [Stack Exchange Ethereum](https://ethereum.stackexchange.com/)
+    - Great place for asking technical questions about Ethereum
+- [Peeranha](https://peeranha.io/)
+    - Decentralized Stack Exchange!
