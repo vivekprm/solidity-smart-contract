@@ -45,3 +45,19 @@ We also get a fake account. When we hit Deploy button we deploy the contract. Si
 It represents all the data associated with this smart contract. Deploying a contract is modifying the blockchain and any modification on the blockchain is done through transaction.
 
 Now if we add a number and click Store button we send another transaction. But we can't see our favorite number because by default it's visibility is internal. To see this we need to add public keyword.
+
+If we add more instructions in the store method, every transaction costs more gas.
+
+Let's add a new function to retrieve this public variable even though we are able to access it without it.
+```sol
+function retrieve() public view returns (uint256) {
+        return favoriteNumber;
+    }
+```
+
+Now if we deploy again we see new blue button called retrieve. The colour is blue because of the 'view' keyword. Solidity has a special keyword which notates functions that don't actually have to run or don't actually have to send a transaction for us to call them and those two keywords are going to be **view** and **pure**. 
+
+A function marked view means, we are just going to read state from the blockchain e.g. in case of retrieve we are just going to read what favoriteNumber variable is.
+Pure disallows even reading from store or storage. favoriteNumber here is know as storage variable because it's stored in a place called storage. 
+
+2:48
