@@ -101,6 +101,17 @@ contract SimpleStorage {
 }
 ```
 
+# Memory, Storage & Call data Intro
+We didn't talk about **memory** keyword above. There are 6 places you can store data in solidity.
+- Stack
+- Memory: Variable only going to exist temporarily. It's only going to exist for the duration of function call.
+- Storage
+- Calldata
+- Code
+- Logs
+
+
+
 To search about information or errors use below resources.
 # Resources For This Course
 - AI Frens
