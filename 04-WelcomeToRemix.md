@@ -169,6 +169,81 @@ When we compile the solidity code, it compiles it down to something called the E
 However before deploying check the datails of Blockchain. E.g. Zksync is EVM compatible but couple of keywords don't work on Zksync.
 
 # Remix Storage Factory
+https://github.com/cyfrin/remix-storage-factory-f23
+
+Building contacts that can deploy and interact with other contracts are called composability.
+
+Lets create a new file called StorageFactory.sol. And write below code:
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+import "./SimpleStorage.sol";
+
+contract StorageFactory {
+    SimpleStorage public simpleStorage;
+
+    function createSimpleStorageContract() public {
+        simpleStorage = new SimpleStorage();
+    }
+}
+```
+
+Now we have StorageFactory which deploys new contract.
+
+Using named import in case we want to import specific contract from a file.
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+import {SimpleStorage} from "./SimpleStorage.sol";
+
+contract StorageFactory {
+    SimpleStorage public simpleStorage;
+
+    function createSimpleStorageContract() public {
+        simpleStorage = new SimpleStorage();
+    }
+}
+```
+
+But here we are not keeping track of the simple storage contracts that we are creating and deploying.
+
+We always need two things in case we want to interact with other contracts in StorageFactory:
+- Address
+- ABI (Application Binary Interface): We can go to the compilation details to find about ABI of contract.
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+import {SimpleStorage} from "./SimpleStorage.sol";
+
+contract StorageFactory {
+    SimpleStorage[] public listOfSimpleStorageContracts;
+
+    function createSimpleStorageContract() public {
+        SimpleStorage simpleStorageContract = new SimpleStorage();
+        listOfSimpleStorageContracts.push(simpleStorageContract);
+
+    }
+
+    function sfStore(uint256 _simpleStorageIndex, uint256 _newSimpleStorageNumber) public {
+        // We always need two things in case we want to interact with other contracts in StorageFactory:
+        // - Address
+        // - ABI (Application Binary Interface): We can go to the compilation details to find about ABI of contract.
+        SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[_simpleStorageIndex];
+        mySimpleStorage.store(_newSimpleStorageNumber);
+    }
+
+    function sfGet(uint256 _simpleStorageIndex) public view returns (uint256) {
+        SimpleStorage mySimpleStorage = listOfSimpleStorageContracts[_simpleStorageIndex];
+        return mySimpleStorage.retrieve();
+    }
+}
+```
 
 To search about information or errors use below resources.
 # Resources For This Course
