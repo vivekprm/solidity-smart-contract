@@ -258,6 +258,12 @@ contract AddFiveStorage is SimpleStorage{}
 For a function to be overridable it needs to have 'virtual' keyword. And then in the contract where we override the function we need to add 'override' keyword.
 
 ```sol
+function store(uint256 _favoriteNumber) public virtual  {
+    myFavoriteNumber = _favoriteNumber;
+}
+```
+
+```sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
