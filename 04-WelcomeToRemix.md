@@ -244,6 +244,34 @@ contract StorageFactory {
     }
 }
 ```
+# Inheritance
+Let's say you liked this SimpleStorage contract, you love all the functionalities except for one thing. You wish that this store function doesn't just store the favourite number, you wish that it added 5 to favourite number before storing. One thing we could do, we duplicate all the code in a new file and write that implementation. Better would be to use inheritance. So AddFiveStorage contract can inherit from SimpleStorage contract an override whatever it doesn't like.
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+import {SimpleStorage} from "./SimpleStorage.sol";
+
+contract AddFiveStorage is SimpleStorage{}
+```
+For a function to be overridable it needs to have 'virtual' keyword. And then in the contract where we override the function we need to add 'override' keyword.
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+import {SimpleStorage} from "./SimpleStorage.sol";
+
+contract AddFiveStorage is SimpleStorage{
+    // +5
+    // Overrides
+    // virtual override
+    function store(uint256 _newNumber) public override  {
+        myFavoriteNumber = _newNumber + 5;
+    }
+}
+```
 
 To search about information or errors use below resources.
 # Resources For This Course
