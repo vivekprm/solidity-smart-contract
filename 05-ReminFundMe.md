@@ -169,7 +169,7 @@ These datafeeds are used by some of the largest protocols in the space such as b
 
 ![Screenshot from 2024-03-02 23-34-13](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/e8ebe617-b6dd-4142-92d2-ee27cea6b757)
 
-We can take a look at an example over at https://docs.chain.link/data-feeds/getting-started. We can directly open the code in Remix.
+We can take a look at an example over at https://docs.chain.link/data-feeds/using-data-feeds#solidity. We can directly open the code in Remix.
 
 ```sol
 // SPDX-License-Identifier: MIT
@@ -198,12 +198,12 @@ contract DataConsumerV3 {
 
     /**
      * Network: Sepolia
-     * Aggregator: BTC/USD
-     * Address: 0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43
+     * Aggregator: ETH/USD
+     * Address: 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
      */
     constructor() {
         dataFeed = AggregatorV3Interface(
-            0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43
+            0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
         );
     }
 
@@ -224,4 +224,23 @@ contract DataConsumerV3 {
 }
 ```
 
-E.g. here Network is Sepolia. Get Sepolia ETH from faucet. Compile it and deploy it in Injected Web3.
+E.g. here Network is Sepolia. Get Sepolia ETH from faucet. Compile it and deploy it in **Injected Provider - MetaMask**, as there are chainlink VMs watching the testnet.
+If you are looking for different addresses of different price feeds you can check the [contract addresses section](https://docs.chain.link/data-feeds/price-feeds/addresses?network=ethereum&page=1) of the documentation. 
+
+# Chainlink VRF
+The next decentralized application right out of the box is going to be Chainlink VRF or **Chainlink Verifiable Randomness Function**.
+
+## Malicious RNG Operators are a risk
+Once we talk about our littery example littlebit later, we'll talk about how randomness can be manipulated in Blockchain.
+
+![Screenshot from 2024-03-04 12-53-52](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/c65652b0-8ae4-4e18-a166-d7fa4f083025)
+
+Blockchains are deterministic systems which by definition means that they can't have Randomness. If you can determine what a random number is it's not really random anymore. So **we need a way to get a provably random number by looking outside of the Blockchain**.
+
+## Chainlink VRF Provides Verifiable Randomness
+![Screenshot from 2024-03-04 13-00-12](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/5a5006c3-268c-40d1-a45e-512ca5c3ad02)
+
+Oracles are perfectly positioned to to exactly that. Chainlink VRF is a way to get provably random number into our smart contract to guarantee fairness and guarantee randomness of applications.
+Many protocols like pull together, Axie Infinity, Ether Cards, Aavegotchis, and many more use Chainlink VRF for lotteries, randomizing NFFs, for gaming and many more.
+
+For more details go [here](https://docs.chain.link/vrf/v2/subscription/examples/get-a-random-number).
