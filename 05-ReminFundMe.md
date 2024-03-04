@@ -259,4 +259,110 @@ Last out of the box feature of chainlink is the most customizable but also the h
 
 ![Screenshot from 2024-03-04 22-22-17](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/26a23bc3-12e9-4ed6-8a0d-ddc4fc13438e)
 
-We want to be able to take any input and get any output. Chainlink functions is the last decentralized out of the box tool and it allows you to make any API call in a decentralized context through a network of chainlink nodes.
+We want to be able to take any input and get any output. [Chainlink functions](https://docs.chain.link/chainlink-functions) is the last decentralized out of the box tool and it allows you to make any API call in a decentralized context through a network of chainlink nodes.
+
+So, back to our FundMe application, we want to get the Etheruem price..Will add a function to get Ethereum price from Chainlink Price datafeed. We will go to the documentation to get the data feed.
+So we need to reach out the datafeed contract to get the data. So we need two things:
+- Address
+- ABI
+
+To get the address go to https://docs.chain.link/data-feeds/price-feeds/addresses?network=ethereum&page=1
+
+To the ABI, before with SimpleStorage we imported the entire contract from the top and we compiled and we got the ABI like that. We could do that here but that's kind of a lot of code and we don't actually care about what the whole contract looks like. We only really want to know what the functions are, so we can call that latest round data function. In remix under compilation details, in ABI we get the list of functions that we can call.
+
+How can be get the ABI?
+There is a concept in Solidity called interface. If we go to [chainlink github](https://github.com/smartcontractkit/chainlink),we can see lots of different contracts in the Chainlink repository. We can go to https://github.com/smartcontractkit/chainlink/blob/develop/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol, we can see whole bunch of function decorators.
+
+We can copy the whole code and paste it in Remix. And use this interface to make API call. For more deatils we can take help from AI tools such as ChatGPT:
+
+![Screenshot from 2024-03-04 23-04-36](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/c73f8176-7a6c-40ec-be48-eca91f6e7f22)
+
+```sol
+pragma solidity ^0.8.18;
+
+interface AggregatorV3Interface {
+  function decimals() external view returns (uint8);
+
+  function description() external view returns (string memory);
+
+  function version() external view returns (uint256);
+
+  function getRoundData(
+    uint80 _roundId
+  ) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
+
+  function latestRoundData()
+    external
+    view
+    returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
+}
+
+contract FundMe {
+    uint256 public minimumUsd = 5; 
+    // Allow users to send $
+    // Have a minimum $ sent
+    // 1. How do we send ETH to this contract?
+    function fund() public payable  {
+        require(msg.value >= minimumUsd, "Didn't send enough ETH."); // 1e18 = 1 ETH = 1000000000000000000 WEI
+    }
+    // function withdraw() public {}
+    function getPrice() public view {
+        // Address 0x694AA1769357215DE4FAC081bf1f309aDC325306
+        // ABI
+        AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306).version();
+    }
+
+    function getConversionRate() public {
+
+    }
+
+    function getVersion() public view returns (uint256) {
+        return AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306).version();
+    }
+}
+```
+
+Instead of copy pasting the whole interface code, we can directly import it from github, as given in [this](https://docs.chain.link/data-feeds/using-data-feeds#solidity) example.
+
+```sol
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+```
+
+It referes contracts from [here](https://www.npmjs.com/package/@chainlink/contracts). Remix download all this code from npm package which is created from github code.
+
+Price has that our contract function retruns has 8 decimal places and msg.value has 18 decimal places. So to match them up we need to return price * 1e10. Now price is int256 and msg.value is uint256. So now here is the code:
+
+```sol
+pragma solidity ^0.8.18;
+
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+
+contract FundMe {
+    uint256 public minimumUsd = 5; 
+    // Allow users to send $
+    // Have a minimum $ sent
+    // 1. How do we send ETH to this contract?
+    function fund() public payable  {
+        require(msg.value >= minimumUsd, "Didn't send enough ETH."); // 1e18 = 1 ETH = 1000000000000000000 WEI
+    }
+    // function withdraw() public {}
+    function getPrice() public view returns (uint256) {
+        // Address 0x694AA1769357215DE4FAC081bf1f309aDC325306
+        // ABI
+        AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        (, int256 price, , , ) = priceFeed.latestRoundData();
+
+        // Price of ETH in terms of USD
+        // 2000.00000000
+        return uint256(price * 1e10);
+    }
+
+    function getConversionRate() public {
+
+    }
+
+    function getVersion() public view returns (uint256) {
+        return AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306).version();
+    }
+}
+```
