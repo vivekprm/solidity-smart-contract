@@ -244,3 +244,12 @@ Oracles are perfectly positioned to to exactly that. Chainlink VRF is a way to g
 Many protocols like pull together, Axie Infinity, Ether Cards, Aavegotchis, and many more use Chainlink VRF for lotteries, randomizing NFFs, for gaming and many more.
 
 For more details go [here](https://docs.chain.link/vrf/v2/subscription/examples/get-a-random-number).
+
+# Chainlink Keepers
+Decentralized out of the box feature of Chainlink is Chainlink Keepers, which is decentralized, event driven execution. As we've see in order to kickoff some type of transaction, somebody needs to spend the gas and somebody needs to sitdown and hit the go button or hit the transact button or hit the send button. But this is obviously a centralized vector, if you have a decentralized application that needs to run at specific times or after spcific events are triggered, **Chainlink Keepers** are solution to this.
+
+![Screenshot from 2024-03-04 13-54-21](https://github.com/vivekprm/solidity-smart-contract/assets/2403660/55983063-5e60-4544-bda8-1e2416bc206a)
+
+**Chainlink Keepers** are chainlink nodes that listen to a registration contracts for different events that you specify to fire maybe you say every 10 minutes you want to do something or once a week do something or if the price of some asset hits some number or may be a liquidity pool is at a certain level whatever event that you want to code you absolutely can. The Chainlink nodes constantly listen for these triggers to happen and check the different contracts for these triggers. Once a trigger returns true the Chainlink Node will then perform whatever action that you tell the chainlink nodes to do.
+
+Check [this doc](https://docs.chain.link/chainlink-automation/guides/compatible-contracts) for more details.
