@@ -384,3 +384,55 @@ function getConversionRate(uint256 ethAmount) public view returns (uint256) {
 ```
 
 The next thing that we can do with this contract is, we want to keep track of users who send us money in this contract. So we can keep an array of addresses called funders and keep updating that depending on actually sends us money.
+
+```sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.18;
+
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+
+contract FundMe {
+    uint256 public minimumUsd = 5e18; 
+    address[] public funders;
+    mapping (address funder => uint256 amountFunded) public addressToAmountFunded;
+
+    // Allow users to send $
+    // Have a minimum $ sent
+    // 1. How do we send ETH to this contract?
+    function fund() public payable  {
+        require(getConversionRate(msg.value) >= minimumUsd, "Didn't send enough ETH."); // 1e18 = 1 ETH = 1000000000000000000 WEI
+        funders.push(msg.sender);
+        addressToAmountFunded[msg.sender] += msg.value; 
+    }
+    // function withdraw() public {}
+    function getPrice() public view returns (uint256) {
+        // Address 0x694AA1769357215DE4FAC081bf1f309aDC325306
+        // ABI
+        AggregatorV3Interface priceFeed = AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306);
+        (, int256 price, , , ) = priceFeed.latestRoundData();
+
+        // Price of ETH in terms of USD
+        // 2000.00000000
+        return uint256(price * 1e10);
+    }
+
+    function getConversionRate(uint256 ethAmount) public view returns (uint256) {
+        uint256 ethPrice = getPrice();
+        uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1e18;
+        return ethAmountInUsd;
+    }
+
+    function getVersion() public view returns (uint256) {
+        return AggregatorV3Interface(0x694AA1769357215DE4FAC081bf1f309aDC325306).version();
+    }
+}
+```
+
+# Library
+Our code above got cluttered with price and conversion rate above. These are the function that can be reused, we can do that by creating a library as described [here](https://solidity-by-example.org/library/).
+
+- Libraries are similar to contracts, but **you can't declare any state variable and you can't send ether**.
+- A library is embedded into the contract if all library functions are internal.
+    - Otherwise the library must be deployed and then linked before the contract is deployed.
+ 
+Let's create a new file PriceConverter.sol
