@@ -383,3 +383,4 @@ function getConversionRate(uint256 ethAmount) public view returns (uint256) {
 }
 ```
 
+The next thing that we can do with this contract is, we want to keep track of users who send us money in this contract. So we can keep an array of addresses called funders and keep updating that depending on actually sends us money.
