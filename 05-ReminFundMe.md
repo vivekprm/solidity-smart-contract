@@ -366,3 +366,20 @@ contract FundMe {
     }
 }
 ```
+
+Now we need to add conversionRate function.
+
+```sol
+uint256 public minimumUsd = 5e18;
+
+function fund() public payable  {
+    require(getConversionRate(msg.value) >= minimumUsd, "Didn't send enough ETH."); // 1e18 = 1 ETH = 1000000000000000000 WEI
+}
+
+function getConversionRate(uint256 ethAmount) public view returns (uint256) {
+    uint256 ethPrice = getPrice();
+    uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1e18;
+    return ethAmountInUsd;
+}
+```
+
