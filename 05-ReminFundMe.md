@@ -367,7 +367,7 @@ contract FundMe {
 }
 ```
 
-Now we need to add conversionRate function.
+When working with Solidity decimals doesn't work. So we always make sure we are using the correct number of units whenever we interact with our contracts. msg.value and msg.sender are known as globally available units in solidity. Now we need to add conversionRate function.
 
 ```sol
 uint256 public minimumUsd = 5e18;
